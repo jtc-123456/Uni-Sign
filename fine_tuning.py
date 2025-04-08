@@ -3,7 +3,7 @@ from torch.nn.utils.rnn import pad_sequence
 from torch.utils.data import DataLoader
 from models import Uni_Sign
 import utils as utils
-from datasets import S2T_Dataset
+from datasets import S2T_Dataset_news
 import os
 import time
 import argparse, json, datetime
@@ -24,7 +24,7 @@ def main(args):
 
     print(f"Creating dataset:")
         
-    train_data = S2T_Dataset(path=train_label_paths[args.dataset], 
+    train_data = S2T_Dataset_news(path=train_label_paths[args.dataset], 
                              args=args, phase='train')
     print(train_data)
     train_sampler = torch.utils.data.distributed.DistributedSampler(train_data,shuffle=True)
@@ -36,7 +36,7 @@ def main(args):
                                  pin_memory=args.pin_mem,
                                  drop_last=True)
     
-    dev_data = S2T_Dataset(path=dev_label_paths[args.dataset], 
+    dev_data = S2T_Dataset_news(path=dev_label_paths[args.dataset], 
                            args=args, phase='dev')
     print(dev_data)
     # dev_sampler = torch.utils.data.distributed.DistributedSampler(dev_data,shuffle=False)
@@ -48,7 +48,7 @@ def main(args):
                                 sampler=dev_sampler, 
                                 pin_memory=args.pin_mem)
         
-    test_data = S2T_Dataset(path=test_label_paths[args.dataset], 
+    test_data = S2T_Dataset_news(path=test_label_paths[args.dataset], 
                             args=args, phase='test')
     print(test_data)
     # test_sampler = torch.utils.data.distributed.DistributedSampler(test_data,shuffle=False)

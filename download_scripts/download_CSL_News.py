@@ -12,7 +12,7 @@ def download_files(output_directory, download_pose):
     RGB_error_log_path = os.path.join(RGB_zip_folder, "download_log.txt")
     
     # Download RGB format
-    for i in range(1, 437):
+    for i in range(1,2):
         url = f"https://huggingface.co/datasets/ZechengLi19/CSL-News/resolve/main/archive_{i:03d}.zip"
         file_path = os.path.join(RGB_zip_folder, f"archive_{i}.zip")
         if os.path.exists(file_path):
@@ -40,7 +40,7 @@ def download_files(output_directory, download_pose):
 
         pose_error_log_path = os.path.join(pose_zip_folder, "download_log.txt")
         
-        for i in range(1, 47):
+        for i in range(1,2):
             url = f"https://huggingface.co/datasets/ZechengLi19/CSL-News_pose/resolve/main/archive_{i:03d}.zip"
             file_path = os.path.join(pose_zip_folder, f"archive_{i}.zip")
             if os.path.exists(file_path):
@@ -77,7 +77,7 @@ def download_files(output_directory, download_pose):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Process some parameters.')
-    parser.add_argument('--output_directory', type=str, help='Path to the dataset directory', default="/path/to/dataset")
+    parser.add_argument('--output_directory', type=str, help='Path to the dataset directory', default="data/CSL_News")
     parser.add_argument('--download_pose', action='store_true', help='Whether to download pose or not')
     args = parser.parse_args()
     download_files(args.output_directory, args.download_pose)

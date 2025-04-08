@@ -9,7 +9,7 @@ from einops import rearrange
 import math
 from stgcn_layers import Graph, get_stgcn_chain
 from deformable_attention_2d import DeformableAttention2D
-from transformers import MT5ForConditionalGeneration, T5Tokenizer 
+from transformers import MT5ForConditionalGeneration, T5Tokenizer,MT5Config 
 import warnings
 from config import mt5_path
 
@@ -136,6 +136,12 @@ class Uni_Sign(nn.Module):
                     nn.init.constant_(layer.weight, 0)
                     nn.init.constant_(layer.bias, 0)
 
+        # config = MT5Config.from_pretrained(mt5_path)  # 加载 config，默认 d_model=768
+        # self.mt5_model = MT5ForConditionalGeneration(config)
+
+        # # 用 strict=False 加载 checkpoint
+        # state_dict = torch.load(f"{mt5_path}/pytorch_model.bin", map_location="cpu")
+        # missing, unexpected = self.mt5_model.load_state_dict(state_dict, strict=False)
         self.mt5_model = MT5ForConditionalGeneration.from_pretrained(mt5_path)
         self.mt5_tokenizer = T5Tokenizer.from_pretrained(mt5_path, legacy=False)
     
