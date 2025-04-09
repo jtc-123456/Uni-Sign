@@ -59,6 +59,7 @@ def main(args):
                                  collate_fn=test_data.collate_fn,
                                  sampler=test_sampler, 
                                  pin_memory=args.pin_mem)
+    print('\n','\n','\n','\n',len(test_dataloader),'\n','\n','\n','\n',)                       
 
     print(f"Creating model:")
     model = Uni_Sign(
@@ -110,9 +111,9 @@ def main(args):
     
     if args.eval:
         if utils.is_main_process():
-            if args.task != "ISLR":
-                print("📄 dev result")
-                evaluate(args, dev_dataloader, model, model_without_ddp, phase='dev')
+            # if args.task != "ISLR":
+            #     print("📄 dev result")
+            #     evaluate(args, dev_dataloader, model, model_without_ddp, phase='dev')
             print("📄 test result")
             evaluate(args, test_dataloader, model, model_without_ddp, phase='test')
 

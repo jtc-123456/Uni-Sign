@@ -514,13 +514,14 @@ class S2T_Dataset_news(Base_Dataset):
                                     transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]), 
                                     ])
 
-        if phase == 'train':
-            self.start_idx = int(sum_sample * 0.0)
-            self.end_idx = int(sum_sample * 0.99)
-        else:
-            self.start_idx = int(sum_sample * 0.99)
-            self.end_idx = int(sum_sample)
-        
+        # if phase == 'train':
+        #     self.start_idx = int(sum_sample * 0.0)
+        #     self.end_idx = int(sum_sample * 0.99)
+        # else:
+        #     self.start_idx = int(sum_sample * 0.99)
+        #     self.end_idx = int(sum_sample)
+        self.start_idx = int(sum_sample * 0.0)
+        self.end_idx = int(sum_sample )        
     def __len__(self):
         return self.end_idx - self.start_idx
     
