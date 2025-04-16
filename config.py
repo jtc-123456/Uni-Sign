@@ -1,5 +1,7 @@
 mt5_path =  "./pretrained_weight/mt5-base"
-dataset='vivo'
+#dataset='vivo'
+#dataset='CE-CSL_small'
+dataset='csl-news'
 # label paths
 train_label_paths = {
                     # "CSL_News": "./data/CSL_News/CSL_News_Labels.json",
